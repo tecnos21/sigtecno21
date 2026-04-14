@@ -22,7 +22,7 @@ from flask import Flask
 # ──────────────────────────────────────────────
 DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
 
-BASE_URL            = "https://api.bybit.com"
+BASE_URL            = "https://api.bytick.com"
 SCAN_INTERVAL       = 60       # seconds between full scans
 MIN_VOLUME_USD      = 500_000  # ignore pairs below this 24h volume
 
