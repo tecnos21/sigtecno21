@@ -85,14 +85,19 @@ def start_keep_alive():
 # ──────────────────────────────────────────────
 #  BYBIT API HELPERS
 # ──────────────────────────────────────────────
+HEADERS = {"User-Agent": "Mozilla/5.0"}
+
 def api_get(path, params=None):
     try:
-        r = requests.get(BASE_URL + path, params=params, timeout=10)
+        r = requests.get(BASE_URL + path, params=params, timeout=15, headers=HEADERS)
         data = r.json()
-        if data.get("retCode") == 0:
+        ret_code = data.get("retCode", -1)
+        if ret_code == 0:
             return data.get("result", {})
+        print(f"  [api] {path} retCode={ret_code} msg={data.get('retMsg')}")
         return None
-    except:
+    except Exception as e:
+        print(f"  [api error] {path}: {e}")
         return None
 
 
